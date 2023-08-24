@@ -83,7 +83,17 @@ while True:
     whitemask = cv2.inRange(hsv, lower, upper)
 
     mask = cv2.bitwise_or(yellowmask, whitemask)  
-    res = cv2.bitwise_and(frame, frame, mask = mask)   
+    res = cv2.bitwise_and(frame, frame, mask = mask)  
+
+    edges = cv2.Canny(mask, 75, 10)
+    lines = cv2.HoughLinesP(edges, 1, np.pi/180, 50, maxLineGap=50)
+    if lines is not None:
+        for line in lines:
+            x1, y1, x2, y2 = line[0]
+            cv2.line(frame, (x1, y1), (x2, y2), (0, 255, 0), 5)
+
+    # cv2.imshow("frame", frame)
+    cv2.imshow("edges", edges) 
 
     # mask = cv2.inRange(hsv, l_b, u_b)
 

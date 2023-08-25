@@ -4,6 +4,31 @@ import numpy as np
 def nothing(x):
     pass
 
+def roi(img):
+    x = int(img.shape[1])
+    y = int(img.shape[0])
+    shape = np.array([[int(0), int(y)], [int(x), int(y)], [int(0.55*x), int(0.40*y)], [int(0.45*x), int(0.40*y)]])
+
+    #define a numpy array with the dimensions of img, but comprised of zeros
+    mask = np.zeros_like(img)
+
+    #Uses 3 channels or 1 channel for color depending on input image
+    if len(img.shape) > 2:
+        channel_count = img.shape[2]
+        ignore_mask_color = (255,) * channel_count
+    else:
+        ignore_mask_color = 255
+
+    #creates a polygon with the mask color
+    cv2.fillPoly(mask, np.int32([shape]), ignore_mask_color)
+
+    #returns the image only where the mask pixels are not zero
+    masked_image = cv2.bitwise_and(img, mask)
+    return masked_image
+
+
+
+
 ######### config
 # white tracking
 cv2.namedWindow("WTracking")
@@ -99,10 +124,10 @@ while True:
 
 
     # mask = cv2.inRange(hsv, l_b, u_b)
-
+    roi_img = roi(mask)
     # res = cv2.bitwise_and(frame, frame, mask=mask)
-    print(edges)
-    cv2.imshow("edges", edges) 
+    cv2.imshow("roi", roi_img) 
+    # cv2.imshow("edges", edges) 
     # cv2.imshow("frame", frame)
     # cv2.imshow("mask", mask)
     # cv2.imshow("res", res)

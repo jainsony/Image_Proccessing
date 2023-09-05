@@ -12,7 +12,7 @@ def nothing(x):
 # cv2.createTrackbar("US", "Tracking", 255, 255, nothing)
 # cv2.createTrackbar("UV", "Tracking", 255, 255, nothing)
 
-vidcap = cv2.VideoCapture("nfs1.mp4")
+vidcap = cv2.VideoCapture("Videos/nfs1.mp4")
 # Capture video frame by frame
 success, frame = vidcap.read()
 

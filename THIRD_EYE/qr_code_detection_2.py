@@ -1,6 +1,6 @@
 import cv2
 
-camera_id = 0
+camera_id = 1
 delay = 10
 window_name = 'OpenCV QR Code'
 
@@ -20,6 +20,7 @@ while True:
                 else:
                     color = (0, 0, 255)
                 frame = cv2.polylines(frame, [p.astype(int)], True, color, 8)
+                
         cv2.imshow(window_name, frame)
 
     if cv2.waitKey(delay) & 0xFF == ord('q'):

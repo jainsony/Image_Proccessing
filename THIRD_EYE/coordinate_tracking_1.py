@@ -85,9 +85,9 @@ if __name__=="__main__":
 
 	# reading the image
 	# img = cv2.imread('black.png', 1)
-	vidcap = cv2.VideoCapture(1)
+	
 	# Capture video frame by frame
-
+	vidcap = cv2.VideoCapture(1)
 	success, img = vidcap.read()
 
 	# displaying the image
@@ -107,3 +107,5 @@ if __name__=="__main__":
 
 	# close the window
 	cv2.destroyAllWindows()
+
+# Shop no.4, Pushpanjali Rd, purushottam nagar, Dayalbagh, Agra

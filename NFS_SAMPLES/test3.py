@@ -26,7 +26,8 @@ cv2.createTrackbar("YUS", "YTracking", 177, 255, nothing)
 cv2.createTrackbar("YUV", "YTracking", 250, 255, nothing)
 ########### end config
 
-vidcap = cv2.VideoCapture("Videos/nfs1.mp4")
+# vidcap = cv2.VideoCapture("Videos/nfs1.mp4")
+vidcap = cv2.VideoCapture(1)
 # Capture video frame by frame
 success, frame = vidcap.read()
 

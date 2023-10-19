@@ -4,25 +4,52 @@ import math
 import numpy as np
 import time
 
-x1=0
-y1=0
+Lx1=0
+Ly1=0
 
-x2=0
-y2=0
+Rx1=0
+Ry1=0
 
-Rx=0
-Ry=0
+# Rx=0
+# Ry=0
+
+destination_x =0
+destination_y =0
+
+Red_Robot_x =0
+Red_Robot_y =0
 
 edge_counter=0
-
+counter = 0 # fior counting the left and right click instant
 Twist = [0, 0] # linear_x, angular_z
 
+
+
+vidcap = cv2.VideoCapture(1)
+success, img = vidcap.read()
+# displaying the image
+cv2.imshow('image', img)
+# setting mouse handler for the image
+# and calling the click_event() function
+
+# counter = 0
+# if counter == 0:
+# 	cv2.setMouseCallback('image', click_event)
+# 	# Rx, Ry = detect_robot(img)
+# 	counter = counter+1
+# else:    
+# 	cv2.setMouseCallback('image', click_event)
+	
 #Serial_control
 def serial_control(Twist):
-	pass
+	count = 1
 
 #Control_Robot
-def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
+def control_loop():
+	global destination_x
+	global destination_y
+	global Red_Robot_x
+	global Red_Robot_y
 
 	dist_x = destination_x - Red_Robot_x     # destination_x - Red_Robot_x       
 	dist_y = destination_y - Red_Robot_y     # destination_y - Red_Robot_y
@@ -47,9 +74,9 @@ def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
 			Twist[1] = 6*diff
 			print(Twist)
 			serial_control(Twist)
-			# success, img = vidcap.read()
-			Red_Robot_x, Red_Robot_y = get_main_frame(img)
-			# cv2.imshow('in control loop', img)
+			# success, img1 = vidcap.read()
+			Red_Robot_x, Red_Robot_y = detect_robot()
+			cv2.imshow('in control loop', img)
 			time.sleep(1)
 
 		else:
@@ -63,12 +90,15 @@ def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
 
 
 #Main_Frame
-def get_main_frame(imageFrame):
+def detect_robot():
 	# pass
-	global Rx
-	global Ry
-	global x2
-	global y2
+	global img
+
+	global Lx1
+	global Ly1
+	global Rx1
+	global Ry1
+	success, imageFrame = vidcap.read()
 
 	hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV) 
 
@@ -92,90 +122,95 @@ def get_main_frame(imageFrame):
 			y = y+(h//2)
 			Rx = x
 			Ry = y
-			imageFrame = cv2.circle(img=imageFrame, center=(x, y), radius=3, color=(0, 255, 0), thickness=5)
-			img = imageFrame
-			x2=x
-			y2=y
-			font = cv2.FONT_HERSHEY_SIMPLEX
-			cv2.putText(img, str(x2) + ',' +	str(y2), (x2,y2), font, 1, (255, 0, 0), 2)
-			start_point = (x1, y1)
-			end_point = (x2, y2)
-			print(x1, ' ', y1)
-			print(x2, ' ', y2)
-			color = (0, 255, 0)
-			thickness = 3
-			img = cv2.line(img, start_point, end_point, color, thickness)
+			cv2.circle(img=imageFrame, center=(x, y), radius=3, color=(0, 255, 0), thickness=5)
+			# img = imageFrame
+			cv2.putText(img, str(Rx) + ',' +	str(Ry), (Rx,Ry), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+			start_point = (Lx1, Ly1)
+			end_point = (Rx, Ry)
+			img = cv2.line(img, start_point, end_point, (0, 255, 0), 3)
 			cv2.imshow('in main frame', img)
+			print("detecting robot")
 			return Rx, Ry
 # function to display the coordinates of
 # of the points clicked on the image
 
 def click_event(event, x, y, flags, params):
-	global x1
-	global y1
-	global x2
-	global y2
+	global Lx1
+	global Ly1
+	global Rx1
+	global Ry1
 	global edge_counter
 
+	global destination_x
+	global destination_y
+	global Red_Robot_x
+	global Red_Robot_y
+
+	global counter
+	
 	vir_comment = 0
 	############################################################ Robot Tracking -----OR----- checking for left mouse clicks 
-	if vir_comment == 0:
+	if vir_comment == 0 and counter == 0:
 		if event == cv2.EVENT_LBUTTONDOWN:
 			edge_counter = 0
-			# x1=Rx
-			# y1=Ry
-			x1, y1 = get_main_frame(img)
+			# Lx1=Rx
+			# Ly1=Ry
+			Lx1, Ly1 = detect_robot()
 			# displaying the coordinates
 			# on the Shell
-			print(x1, ' ', y1)
+			print(Lx1, ' ', Ly1)
 
-			# displaying the coordinates
-			# on the image window
+			Red_Robot_x = Lx1
+			Red_Robot_y = Ly1
+
 			font = cv2.FONT_HERSHEY_SIMPLEX
-			# cv2.putText(img, str(x1) + ',' +	str(y1), (x1,y1), font, 1, (255, 0, 0), 2)
-			cv2.imshow('image', img)
+			# cv2.putText(img, str(Lx1) + ',' +	str(Ly1), (Lx1,Ly1), font, 1, (255, 0, 0), 2)
+			# cv2.imshow('image', img)
 	
 	############################################################# checking for right mouse clicks	
 		if event==cv2.EVENT_RBUTTONDOWN:
-			x2=x
-			y2=y
-			font = cv2.FONT_HERSHEY_SIMPLEX
-			cv2.putText(img, str(x2) + ',' +	str(y2), (x2,y2), font, 1, (255, 0, 0), 2)
-			start_point = (x1, y1)
-			end_point = (x2, y2)
-			print(x1, ' ', y1)
-			print(x2, ' ', y2)
-			color = (0, 255, 0)
-			thickness = 3
-			image = cv2.line(img, start_point, end_point, color, thickness)
-			dist = math.dist(start_point, end_point)
-			print("distance = "+str(dist))
+			Rx1=x
+			Ry1=y
+			# cv2.putText(img, str(Rx1) + ',' +	str(Ry1), (Rx1,Ry1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+			# start_point = (Lx1, Ly1)
+			# end_point = (Rx1, Ry1)
+			# print(Lx1, ' ', Ly1)
+			# print(Rx1, ' ', Ry1)
+			# color = (0, 255, 0)
+			# thickness = 3
+			# img = cv2.line(img, start_point, end_point, color, thickness)
+			# dist = math.dist(start_point, end_point)
+			# print("distance = "+str(dist))
 			# cv2.imshow('image', img)
-			control_loop(x2, y2, x1, y1)
+			destination_x = Rx1
+			destination_y = Ry1
+			control_loop()
+			counter = counter + 1
 			# time.sleep(2)
 
 
 
+cv2.setMouseCallback('image', click_event)
 # driver function
-if __name__=="__main__":
+# if __name__=="__main__":
 	# reading the image
 	# img = cv2.imread('black.png', 1)
 	# Capture video frame by frame
-	vidcap = cv2.VideoCapture(1)
-	success, img = vidcap.read()
-	# displaying the image
-	cv2.imshow('image', img)
-	# setting mouse handler for the image
-	# and calling the click_event() function
+	# vidcap = cv2.VideoCapture(1)
+	# success, img = vidcap.read()
+	# # displaying the image
+	# cv2.imshow('image', img)
+	# # setting mouse handler for the image
+	# # and calling the click_event() function
 
-	counter = 0
-	if counter == 0:
-		cv2.setMouseCallback('image', click_event)
-		# Rx, Ry = get_main_frame(img)
-		counter = counter+1
-	else:    
-		cv2.setMouseCallback('image', click_event)
+	# counter = 0
+	# if counter == 0:
+	# 	cv2.setMouseCallback('image', click_event)
+	# 	# Rx, Ry = detect_robot(img)
+	# 	counter = counter+1
+	# else:    
+	# 	cv2.setMouseCallback('image', click_event)
 	# wait for a key to be pressed to exit
-	cv2.waitKey(0)
-	# close the window
-	cv2.destroyAllWindows()
+cv2.waitKey(0)
+# close the window
+cv2.destroyAllWindows()

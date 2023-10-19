@@ -13,9 +13,6 @@ y2=0
 Rx=0
 Ry=0
 
-live_img1=0
-live_img2=0
-
 edge_counter=0
 
 Twist = [0, 0] # linear_x, angular_z
@@ -52,7 +49,7 @@ def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
 			serial_control(Twist)
 			# success, img = vidcap.read()
 			Red_Robot_x, Red_Robot_y = get_main_frame(img)
-			cv2.imshow('in control loop', img)
+			# cv2.imshow('in control loop', img)
 			time.sleep(1)
 
 		else:
@@ -70,6 +67,9 @@ def get_main_frame(imageFrame):
 	# pass
 	global Rx
 	global Ry
+	global x2
+	global y2
+
 	hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV) 
 
 	red_lower = np.array([0, 100, 184], np.uint8) 
@@ -93,8 +93,20 @@ def get_main_frame(imageFrame):
 			Rx = x
 			Ry = y
 			imageFrame = cv2.circle(img=imageFrame, center=(x, y), radius=3, color=(0, 255, 0), thickness=5)
+			img = imageFrame
+			x2=x
+			y2=y
+			font = cv2.FONT_HERSHEY_SIMPLEX
+			cv2.putText(img, str(x2) + ',' +	str(y2), (x2,y2), font, 1, (255, 0, 0), 2)
+			start_point = (x1, y1)
+			end_point = (x2, y2)
+			print(x1, ' ', y1)
+			print(x2, ' ', y2)
+			color = (0, 255, 0)
+			thickness = 3
+			img = cv2.line(img, start_point, end_point, color, thickness)
 
-			cv2.imshow('in main frame', imageFrame)
+			cv2.imshow('in main frame', img)
 			return Rx, Ry
 # function to display the coordinates of
 # of the points clicked on the image
@@ -121,7 +133,7 @@ def click_event(event, x, y, flags, params):
 			# displaying the coordinates
 			# on the image window
 			font = cv2.FONT_HERSHEY_SIMPLEX
-			cv2.putText(img, str(x1) + ',' +	str(y1), (x1,y1), font, 1, (255, 0, 0), 2)
+			# cv2.putText(img, str(x1) + ',' +	str(y1), (x1,y1), font, 1, (255, 0, 0), 2)
 			cv2.imshow('image', img)
 	
 	############################################################ checking for right mouse clicks	
@@ -131,17 +143,11 @@ def click_event(event, x, y, flags, params):
 			font = cv2.FONT_HERSHEY_SIMPLEX
 			cv2.putText(img, str(x2) + ',' +	str(y2), (x2,y2), font, 1, (255, 0, 0), 2)
 			start_point = (x1, y1)
-			# End coordinate, here (250, 250)
-			# represents the bottom right corner of image
 			end_point = (x2, y2)
 			print(x1, ' ', y1)
 			print(x2, ' ', y2)
-			# Green color in BGR
 			color = (0, 255, 0)
-			# Line thickness of 9 px
 			thickness = 3
-			# Using cv2.line() method
-			# Draw a diagonal green line with thickness of 9 px
 			image = cv2.line(img, start_point, end_point, color, thickness)
 			dist = math.dist(start_point, end_point)
 			print("distance = "+str(dist))

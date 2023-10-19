@@ -65,7 +65,7 @@ while True:
                     tqx1=x
                     tqy1=y
                 
-                elif s == 'test_qr_4':
+                elif s == 'test_qr_2':
                     tqx2=x
                     tqy2=y
                 # Draw a circle in the center of rectangle

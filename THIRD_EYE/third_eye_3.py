@@ -11,6 +11,8 @@ destination_y =0
 Red_Robot_x =0
 Red_Robot_y =0
 
+distance_error_factor = 50
+
 Twist = [0, 0]
 
 cap = cv2.VideoCapture(1)
@@ -21,45 +23,41 @@ def control_loop():
     global Red_Robot_y
     global destination_x
     global destination_y
+    global distance_error_factor
 
     global Twist
 
     dist_x = destination_x - Red_Robot_x     # destination_x - Red_Robot_x       
     dist_y = destination_y - Red_Robot_y     # destination_y - Red_Robot_y
     distance = math.sqrt(dist_x * dist_x + dist_y * dist_y)
+    print("Distance"+str(distance))
+    if distance > distance_error_factor:      # Distance_Error_control
+        # position
+        Twist[0] = 2*distance #param
+        # orientation
+        goal_theta = math.atan2(dist_y, dist_x)
+        diff = goal_theta - Twist[1]        #Alert###
 
-    while distance > 200:
-        dist_x = destination_x - Red_Robot_x     # destination_x - Red_Robot_x       
-        dist_y = destination_y - Red_Robot_y     # destination_y - Red_Robot_y
-        distance = math.sqrt(dist_x * dist_x + dist_y * dist_y)
-        if distance > 1:      # Distance_Error_control
-            # position
-            Twist[0] = 2*distance #param
-            # orientation
-            goal_theta = math.atan2(dist_y, dist_x)
-            diff = goal_theta - Twist[1]        #Alert###
+        if diff > math.pi:
+            diff -= 2*math.pi #param
+        elif diff < -math.pi:
+            diff += 2*math.pi #param
 
-            if diff > math.pi:
-                diff -= 2*math.pi #param
-            elif diff < -math.pi:
-                diff += 2*math.pi #param
+        Twist[1] = 6*diff  #param
+        print("..........in control loop.........")
+        print(Twist) # send command now 
+        # serial_control(Twist)
+        # success, img = vidcap.read()
+        Red_Robot_x, Red_Robot_y = detect_robot()
+        # cv2.imshow('in control loop', img)
+        # time.sleep(0.5)
 
-            Twist[1] = 6*diff  #param
-            print("in control loop")
-            print(Twist)
-            # serial_control(Twist)
-            # success, img = vidcap.read()
-            Red_Robot_x, Red_Robot_y = detect_robot(img)
-            # cv2.imshow('in control loop', img)
-            time.sleep(0.5)
-
-        else:
-            # target reached!
-            Twist[0] = 0.0
-            Twist[1] = 0.0
-            break
-            # self.call_catch_turtle_server(self.turtle_to_catch_.name)
-            # self.turtle_to_catch_ = None
+    else:
+        # target reached!
+        Twist[0] = 0.0
+        Twist[1] = 0.0
+        # self.call_catch_turtle_server(self.turtle_to_catch_.name)
+        # self.turtle_to_catch_ = None
 
 
 #3 detect robot
@@ -132,7 +130,7 @@ while True:
     cv2.imshow('img', img)
     # cv2.imshow('frame', frame)
     cv2.setMouseCallback('img', click_event)
-
+    control_loop()
 
     if cv2.waitKey(10) & 0xFF == ord('q'):
         break

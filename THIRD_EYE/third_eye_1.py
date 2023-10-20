@@ -46,7 +46,7 @@ def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
 
 			Twist[1] = 6*diff
 			print(Twist)
-			serial_control(Twist)
+			# serial_control(Twist)
 			# success, img = vidcap.read()
 			Red_Robot_x, Red_Robot_y = get_main_frame(img)
 			# cv2.imshow('in control loop', img)

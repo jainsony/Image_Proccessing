@@ -87,25 +87,11 @@ while True:
     res = cv2.bitwise_and(frame, frame, mask = mask)  
 
     edges = cv2.Canny(mask, 100, 254, 3)
-    #  Canny( detected_edges, detected_edges, lowThreshold, lowThreshold*ratio, kernel_size );
-    lines = cv2.HoughLinesP(edges, 1, np.pi/180, 50, maxLineGap=50)
-    if lines is not None:
-        for line in lines:
-            x1, y1, x2, y2 = line[0]
-            cv2.line(frame, (x1, y1), (x2, y2), (0, 255, 0), 5)
 
-
-
-    # cv2.imshow("frame", frame)
-
-
-    # mask = cv2.inRange(hsv, l_b, u_b)
-
-    # res = cv2.bitwise_and(frame, frame, mask=mask)
     print(edges)
     cv2.imshow("edges", edges) 
     cv2.imshow("frame", frame)
-    # cv2.imshow("mask", mask)
+    cv2.imshow("mask", mask)
     # cv2.imshow("res", res)
 
     key = cv2.waitKey(1)

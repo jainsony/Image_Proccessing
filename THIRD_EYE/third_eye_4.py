@@ -20,6 +20,10 @@ Twist = [0, 0]
 
 cap = cv2.VideoCapture(1)
 
+# def flip_coordinates(point):
+#     x, y = point
+#     return [x, img.shape[0] - y - 1]
+
 #4 control robot (kinematics)
 def control_loop():
     global Red_Robot_x
@@ -37,8 +41,7 @@ def control_loop():
 
     goal_theta = math.atan2(dist_y, dist_x)
 
-    print("Distance : "+str(distance))
-    print("Dist_X : "+str(dist_x) + " Dist_Y : "+str(dist_y)+" Theta : "+ str(goal_theta))
+    print("Distance: "+str(distance)+", Dist_X: "+str(dist_x) + ", Dist_Y: "+str(dist_y)+", Theta: "+ str(goal_theta))
 
     if distance > distance_error_factor:      # Distance_Error_control
         # position
@@ -72,34 +75,62 @@ def control_loop():
 
 #3 detect robot
 def detect_robot():
-    detected_x=0
-    detected_y=0
+    detected_rx=0
+    detected_ry=0
+    detected_gx=0
+    detected_gy=0    
 
     hsvFrame = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 
-        
-    red_lower = np.array([0, 100, 184], np.uint8) 
-    red_upper = np.array([255, 255, 255], np.uint8) 
+
+    # red mask    
+    red_lower = np.array([0, 141, 206], np.uint8) 
+    red_upper = np.array([8, 224, 255], np.uint8) 
     red_mask = cv2.inRange(hsvFrame, red_lower, red_upper) 
 
+    # red mask    
+    green_lower = np.array([60, 40, 165], np.uint8) 
+    green_upper = np.array([84, 140, 255], np.uint8) 
+    green_mask = cv2.inRange(hsvFrame, green_lower, green_upper) 
+
+    #blue
     kernel = np.ones((5, 5), "uint8") 
 
     # For red color 
     red_mask = cv2.dilate(red_mask, kernel) 
     res_red = cv2.bitwise_and(img, img, mask = red_mask) 
-    # cv2.imshow('mask', res_red)
-    contours, hierarchy = cv2.findContours(red_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) 
+    cv2.imshow('red_mask', res_red)
+    red_contours, hierarchy = cv2.findContours(red_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) 
 
-    for pic, contour in enumerate(contours): 
+    # For green color
+    green_mask = cv2.dilate(green_mask, kernel) 
+    res_green = cv2.bitwise_and(img, img, mask = green_mask) 
+    cv2.imshow('green_mask', res_green)
+    green_contours, hierarchy = cv2.findContours(green_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)     
+    
+    #red contours
+    for pic, contour in enumerate(red_contours): 
         area = cv2.contourArea(contour) 
         if(area > 3000): 
             x, y, w, h = cv2.boundingRect(contour) 
             cv2.putText(img, "Robot detected", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 0), thickness=2)	
             
-            detected_x = x+(w//2)
-            detected_y = y+(h//2)
-            cv2.circle(img=img, center=(detected_x, detected_y), radius=3, color=(0, 255, 0), thickness=5)
-        
-    return detected_x, detected_y
+            detected_rx = x +(w//2)
+            detected_ry = y +(h//2)
+            cv2.circle(img=img, center=(detected_rx, detected_ry), radius=3, color=(0, 255, 0), thickness=5)
+
+    # grren contours
+    for pic, contour in enumerate(green_contours): 
+        area = cv2.contourArea(contour) 
+        if(area > 1000): 
+            x, y, w, h = cv2.boundingRect(contour) 
+            cv2.putText(img, "Direction detected", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 0), thickness=2)	
+            
+            detected_gx = x +(w//2)
+            detected_gy = y +(h//2)
+            cv2.circle(img=img, center=(detected_gx, detected_gy), radius=3, color=(0, 255, 0), thickness=5)
+
+            
+    return detected_rx, detected_ry
 
 #2 Update frame
 def Update_frame(): # only updates static frame with destination_x, destination_y, Red_Robot_x, Red_Robot_y coordinates and path
@@ -137,6 +168,8 @@ def click_event(event, x, y, flags, params):
 # run_once()
 while True:
     ret, img = cap.read()
+
+    # img = cv2.flip(img, 0)
     # Red_Robot_x, Red_Robot_y = detect_robot()
     Update_frame()
     cv2.imshow('img', img)
@@ -163,14 +196,3 @@ cv2.destroyAllWindow()
 
 
 
-
-
-# def run_once():
-#     global Red_Robot_x
-#     global Red_Robot_y   
-
-#     Red_Robot_x, Red_Robot_y = detect_robot()
-#     cv2.setMouseCallback('image', click_event)
-#     if(Red_Robot_x !=0 and Red_Robot_y !=0):
-#         cv2.imshow('frame', frame)
-#         cv2.waitKey(0)

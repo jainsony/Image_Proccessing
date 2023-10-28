@@ -31,8 +31,19 @@ speed = 50
 
 cap = cv2.VideoCapture(1)
 
-def get_twist_angle():
-    global theta_error
+# def get_twist_angle():
+#     global theta_error
+# # orientation
+#     goal_theta = math.atan2(dist_y, dist_x) # triangle ABC
+#     diff = goal_theta - self.pose_.theta
+#     if diff > math.pi:
+#         diff -= 2*math.pi
+#     elif diff < -math.pi:
+#         diff += 2*math.pi
+    
+#     print()
+
+
 
 def send_serial(speed, dir):
     control_string = "<"+str(int(speed)) +","+ str(int(dir))  +","+str(0)  +","+str(0)+">"+"\n"
@@ -95,7 +106,7 @@ def control_loop():
         Twist[0] = 2*distance #param
 
         # orientation
-        Twist[1] = get_twist_angle()
+        # Twist[1] = get_twist_angle()
         
         Red_Robot_x, Red_Robot_y = detect_robot()
         
@@ -203,9 +214,50 @@ def detect_robot():
     # Calculate_angles 
     arrow_angles = Calculate_angle(qr, qs, rs) # recived A, B, C = arrow_angle, third_side_angle, distance_angle
     destination_angles = Calculate_angle(ab, ac, bc) # recived A, B, C = arrow_angle, third_side_angle, distance_angle
+    theta_error = destination_angles[2] - arrow_angles[2]
 
-    
-    # print(str("arrow_angles: ")+str(int(arrow_angles[2]))+str(" destination_angles: ")+str(int(destination_angles[2]))+str(" theta_error: ")+str(int(theta_error)))
+    # Theta modification
+    mod_arrow_angle=0
+    mod_destination_angle=0
+
+    # for arrow
+    if detected_gy > Red_Robot_y and detected_gx > Red_Robot_x:
+        mod_arrow_angle = arrow_angles[2]
+    elif detected_gy > Red_Robot_y and detected_gx < Red_Robot_x:
+        mod_arrow_angle = 180 - arrow_angles[2]
+    elif detected_gy < Red_Robot_y and detected_gx < Red_Robot_x:
+        mod_arrow_angle = 180 + arrow_angles[2]
+    elif detected_gy < Red_Robot_y and detected_gx > Red_Robot_x:
+        mod_arrow_angle = 360 - arrow_angles[2]
+    else:
+        print("object is not there")
+
+    # fro path
+    if destination_y > Red_Robot_y and destination_x > Red_Robot_x:
+        mod_destination_angle = destination_angles[2]
+    elif destination_y > Red_Robot_y and destination_x < Red_Robot_x:
+        mod_destination_angle = 180 - destination_angles[2]
+    elif destination_y < Red_Robot_y and destination_x < Red_Robot_x:
+        mod_destination_angle = 180 + destination_angles[2]
+    elif destination_y < Red_Robot_y and destination_x > Red_Robot_x:
+        mod_destination_angle = 360 - destination_angles[2]
+    else:
+        print("path is not there")
+
+    # theta_error = destination_angles[2] - arrow_angles[2]
+    mod_theta_error = mod_destination_angle - mod_arrow_angle
+
+    if mod_theta_error > 180:
+        mod_theta_error -= 2*math.pi
+    elif mod_theta_error < -math.pi:
+        mod_theta_error += 2*math.pi
+
+    print(str("info:  ")
+        #str("arrow_angles: ")+str(int(arrow_angles[2]))+str(" destination_angles: ")+str(int(destination_angles[2]))
+        #   +str(" theta_error: ")+str(int(theta_error))
+        #   +str(" goal_theta: ")+str(int(10*goal_theta))+str(" robot_theta: ")+str(int(10*robot_theta))+str(" diff: ")+str(10*diff)
+    +str(" mod_destination_angle: ")+str(int(mod_destination_angle))+str(" mod_arrow_angle: ")+str(int(mod_arrow_angle))+str(" mod_theta_error: ")+str(int(mod_theta_error))
+    )
     # print(str("destination_angles: ")+str(destination_angles[2]))
     #print info
     # robo_info(arrow_length, third_side, third_side_angle/10)

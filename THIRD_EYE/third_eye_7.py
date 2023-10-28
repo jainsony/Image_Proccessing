@@ -9,7 +9,6 @@ import serial
 #Variables
 debug = 0
 
-
 destination_x =1
 destination_y =1
 Red_Robot_x =1
@@ -17,6 +16,8 @@ Red_Robot_y =1
 distance = 1
 third_side_angle = 0 
 
+min_speed = 35
+max_speed = 45
 distance_error_factor = 10
 Twist = [0, 0]
 
@@ -27,29 +28,31 @@ prev_error = 0
 control_string = ""
 control_string += str(0)+"," + str(0) +","+ str(0) +"," + str(0) + "\n"
 speed = 50
-# ser = serial.Serial(port='COM7',baudrate=115200,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=0)
+ser = serial.Serial(port='COM7',baudrate=115200,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=0)
 
 cap = cv2.VideoCapture(1)
 
-# def get_twist_angle():
-#     global theta_error
-# # orientation
-#     goal_theta = math.atan2(dist_y, dist_x) # triangle ABC
-#     diff = goal_theta - self.pose_.theta
-#     if diff > math.pi:
-#         diff -= 2*math.pi
-#     elif diff < -math.pi:
-#         diff += 2*math.pi
-    
-#     print()
+def map_range(value, from_low, from_high, to_low, to_high):
+    # Check if value is outside the from range
+    if value < from_low:
+        return to_low
+    if value > from_high:
+        return to_high
 
+    # Map the value from the from range to the to range
+    from_range = from_high - from_low
+    to_range = to_high - to_low
+    scaled_value = (value - from_low) / from_range
+    mapped_value = to_low + (scaled_value * to_range)
+
+    return mapped_value
 
 
 def send_serial(speed, dir):
     control_string = "<"+str(int(speed)) +","+ str(int(dir))  +","+str(0)  +","+str(0)+">"+"\n"
     # if debug == 1:
     print(control_string)
-    # ser.write(str.encode(control_string))
+    ser.write(str.encode(control_string))
     time.sleep(0.1)
 
 def calculate_distance(x1, y1, x2, y2):
@@ -95,35 +98,38 @@ def control_loop():
     global distance
     global Twist
     global theta_error
+    global min_speed
+    global max_speed
 
     distance = calculate_distance(destination_x, destination_y, Red_Robot_x, Red_Robot_y) # x1, y1, x2, y2
     distance = int(distance/10) # 10 is factor here
-
-    # print("Distance: "+str(distance)+", Dist_X: "+str(dist_x) + ", Dist_Y: "+str(dist_y)+", Theta: "+ str(goal_theta))
-
+   
     if distance > distance_error_factor:      # Distance_Error_control
+   
+        Red_Robot_x, Red_Robot_y, turnig,  = detect_robot()
+
         # position
-        Twist[0] = 2*distance #param
+        speed = map_range(distance, 10, 120, min_speed, max_speed)
 
-        # orientation
-        # Twist[1] = get_twist_angle()
-        
-        Red_Robot_x, Red_Robot_y = detect_robot()
-        
+        if turnig == 0:
+            Twist[0] = int(1.5*speed) #param
+            Twist[1] = int(turnig)
+        else:
+            Twist[0] = int(0) #param
+            Twist[1] = int(turnig)
         # send command now 
-        # send_serial(Twist[0], Twist[1])
+        send_serial(Twist[0], Twist[1])
 
-        if debug == 1:    
-            print("..........in control loop.........")
-            print(Twist) 
-            print("Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
-
+        if debug == 0:    
+            print(str("in control loop : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
 
     else:
+        if debug == 0:    
+            print(str("next goal : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
         # target reached!
         Twist[0] = 0.0
         Twist[1] = 0.0
-        # send_serial(Twist[0], Twist[1])
+        send_serial(Twist[0], Twist[1])
         # self.call_catch_turtle_server(self.turtle_to_catch_.name)
         # self.turtle_to_catch_ = None
 
@@ -134,6 +140,15 @@ def detect_robot():
     detected_ry=0
     detected_gx=0
     detected_gy=0   
+
+    mod_destination_angle=0
+    mod_arrow_angle=0
+
+    derivative_constant=1
+    mapped_value = 0
+    global min_speed
+    global max_speed
+    angle_error_factor = 5
 
     global third_side_angle 
     global destination_x
@@ -217,8 +232,6 @@ def detect_robot():
     theta_error = destination_angles[2] - arrow_angles[2]
 
     # Theta modification
-    mod_arrow_angle=0
-    mod_destination_angle=0
 
     # for arrow
     if detected_gy > Red_Robot_y and detected_gx > Red_Robot_x:
@@ -247,23 +260,32 @@ def detect_robot():
     # theta_error = destination_angles[2] - arrow_angles[2]
     mod_theta_error = mod_destination_angle - mod_arrow_angle
 
-    if mod_theta_error > 180:
+    if mod_theta_error > math.pi:
         mod_theta_error -= 2*math.pi
     elif mod_theta_error < -math.pi:
         mod_theta_error += 2*math.pi
+    
+    # for left command
+    if mod_theta_error < -1*angle_error_factor:
+        mapped_value = map_range(mod_theta_error, -360, -1*angle_error_factor, max_speed, min_speed)
+        mapped_value = -1*mapped_value
+    # for right command
+    elif mod_theta_error > angle_error_factor:
+        mapped_value = map_range(mod_theta_error, angle_error_factor, 360, min_speed, max_speed)
+    else:
+        mapped_value = 0
 
-    print(str("info:  ")
-        #str("arrow_angles: ")+str(int(arrow_angles[2]))+str(" destination_angles: ")+str(int(destination_angles[2]))
-        #   +str(" theta_error: ")+str(int(theta_error))
-        #   +str(" goal_theta: ")+str(int(10*goal_theta))+str(" robot_theta: ")+str(int(10*robot_theta))+str(" diff: ")+str(10*diff)
-    +str(" mod_destination_angle: ")+str(int(mod_destination_angle))+str(" mod_arrow_angle: ")+str(int(mod_arrow_angle))+str(" mod_theta_error: ")+str(int(mod_theta_error))
-    )
-    # print(str("destination_angles: ")+str(destination_angles[2]))
-    #print info
-    # robo_info(arrow_length, third_side, third_side_angle/10)
+    turnig = derivative_constant*mapped_value
 
+    if debug == 1:
+        print(str("info: ")
+            # +str("arrow_angles: ")+str(int(arrow_angles[2]))+str(" destination_angles: ")+str(int(destination_angles[2]))
+            +str(" turnig: ")+str((turnig))
+            # +str(" goal_theta: ")+str(int(10*goal_theta))+str(" robot_theta: ")+str(int(10*robot_theta))+str(" diff: ")+str(10*diff)
+            +str(" mod_destination_angle: ")+str(int(mod_destination_angle))+str(" mod_arrow_angle: ")+str(int(mod_arrow_angle))+str(" mod_theta_error: ")+str(int(mod_theta_error))
+        )
 
-    return detected_rx, detected_ry
+    return detected_rx, detected_ry, turnig
 
 #2 Update frame
 def Update_frame(): # only updates static frame with destination_x, destination_y, Red_Robot_x, Red_Robot_y coordinates and path
@@ -272,7 +294,7 @@ def Update_frame(): # only updates static frame with destination_x, destination_
     global destination_x
     global destination_y
 
-    Red_Robot_x, Red_Robot_y = detect_robot()
+    Red_Robot_x, Red_Robot_y , _ = detect_robot()
     cv2.putText(img, str(destination_x) + ',' +str(destination_y), (destination_x,destination_y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     start_point = (Red_Robot_x, Red_Robot_y)
     end_point = (destination_x, destination_y)

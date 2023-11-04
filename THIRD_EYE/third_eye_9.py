@@ -9,6 +9,9 @@ import serial
 #Variables
 debug = 0
 
+list_of_points = []
+execution_flag = 0
+
 destination_x =1
 destination_y =1
 Red_Robot_x =1
@@ -101,7 +104,9 @@ def control_loop():
     global theta_error
     global min_speed
     global max_speed
+    global list_of_points
 
+    destination_x, destination_y = list_of_points[0]
     distance = calculate_distance(destination_x, destination_y, Red_Robot_x, Red_Robot_y) # x1, y1, x2, y2
     distance = int(distance/10) # 10 is factor here
    
@@ -134,6 +139,7 @@ def control_loop():
         if debug == 0:    
             print(str("next goal : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
         # target reached!
+        list_of_points.pop(0)
         Twist[0] = 0.0
         Twist[1] = 0.0
         send_serial(Twist[0], Twist[1])
@@ -194,7 +200,7 @@ def detect_robot():
     #red contours
     for pic, contour in enumerate(red_contours): 
         area = cv2.contourArea(contour) 
-        if(area > 1000): 
+        if(area > 200): 
             x, y, w, h = cv2.boundingRect(contour) 
             cv2.putText(img, "Robot detected", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 0), thickness=2)	
             
@@ -205,7 +211,7 @@ def detect_robot():
     # grren contours
     for pic, contour in enumerate(green_contours): 
         area = cv2.contourArea(contour) 
-        if(area > 1000): 
+        if(area > 200): 
             x, y, w, h = cv2.boundingRect(contour) 
             cv2.putText(img, "Direction detected", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 0), thickness=2)	
             
@@ -264,8 +270,11 @@ def detect_robot():
     else:
         print("path is not there")
 
-    # theta_error = destination_angles[2] - arrow_angles[2]
-    mod_theta_error = mod_destination_angle - mod_arrow_angle
+    #edge case error handle
+    if mod_destination_angle>215 and mod_arrow_angle<45:
+            mod_theta_error = - 1*mod_arrow_angle -1*(360 - mod_destination_angle)
+    else:
+        mod_theta_error = mod_destination_angle - mod_arrow_angle
 
     if mod_theta_error > math.pi:
         mod_theta_error -= 2*math.pi
@@ -315,10 +324,15 @@ def Update_frame(): # only updates static frame with destination_x, destination_
 def click_event(event, x, y, flags, params):
     global destination_x
     global destination_y
+    global execution_flag
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        list_of_points.append([x, y])
 
     if event==cv2.EVENT_RBUTTONDOWN:
-        destination_x=x
-        destination_y=y
+        # destination_x=x
+        # destination_y=y
+        execution_flag = 1
 
 
 # ret, frame = cap.read()
@@ -328,11 +342,17 @@ while True:
 
     # img = cv2.flip(img, 0)
     # Red_Robot_x, Red_Robot_y = detect_robot()
-    Update_frame()
-    cv2.imshow('img', img)
-    # cv2.imshow('frame', frame)
     cv2.setMouseCallback('img', click_event)
-    control_loop()
+    if  len(list_of_points) != 0 and execution_flag == 1:
+        Update_frame()
+        destination_x= Red_Robot_x
+        destination_y= Red_Robot_y
+        cv2.imshow('img', img)
+        # cv2.imshow('frame', frame)
+        cv2.setMouseCallback('img', click_event)
+        control_loop()
+    else:
+        execution_flag = 0
 
     if cv2.waitKey(10) & 0xFF == ord('q'):
         break
@@ -341,7 +361,9 @@ cv2.destroyAllWindows()
 
 
 
-
+""" 
+This file is to handle the edge case error
+"""
 
 
 

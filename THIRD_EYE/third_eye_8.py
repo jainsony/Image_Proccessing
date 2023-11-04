@@ -194,7 +194,7 @@ def detect_robot():
     #red contours
     for pic, contour in enumerate(red_contours): 
         area = cv2.contourArea(contour) 
-        if(area > 1000): 
+        if(area > 200): 
             x, y, w, h = cv2.boundingRect(contour) 
             cv2.putText(img, "Robot detected", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 0), thickness=2)	
             
@@ -205,7 +205,7 @@ def detect_robot():
     # grren contours
     for pic, contour in enumerate(green_contours): 
         area = cv2.contourArea(contour) 
-        if(area > 1000): 
+        if(area > 200): 
             x, y, w, h = cv2.boundingRect(contour) 
             cv2.putText(img, "Direction detected", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 0), thickness=2)	
             
@@ -264,8 +264,11 @@ def detect_robot():
     else:
         print("path is not there")
 
-    # theta_error = destination_angles[2] - arrow_angles[2]
-    mod_theta_error = mod_destination_angle - mod_arrow_angle
+    #edge case error handle
+    if mod_destination_angle>215 and mod_arrow_angle<45:
+            mod_theta_error = - 1*mod_arrow_angle -1*(360 - mod_destination_angle)
+    else:
+        mod_theta_error = mod_destination_angle - mod_arrow_angle
 
     if mod_theta_error > math.pi:
         mod_theta_error -= 2*math.pi
@@ -341,7 +344,9 @@ cv2.destroyAllWindows()
 
 
 
-
+""" 
+This file is to handle the edge case error
+"""
 
 
 

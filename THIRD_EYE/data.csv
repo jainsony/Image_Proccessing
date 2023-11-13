@@ -1,0 +1,407 @@
+Time ,Status,Data,Parametes
+,,,
+['2023-11-09 13:07:15'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:16'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:17'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:18'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 24, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:19'],Going towards goal : ,"Distance: 25, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 24, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 25, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 24, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 23, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 22, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 20, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:20'],Going towards goal : ,"Distance: 19, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 18, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 17, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 15, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 14, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 13, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 11, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:21'],Going towards goal : ,"Distance: 10, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 9, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 7, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 6, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:22'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:23'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:24'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:25'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:26'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:27'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 28, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:28'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:29'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:30'],Going towards goal : ,"Distance: 27, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:31'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 27, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 26, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 26, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 26, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 25, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:32'],Going towards goal : ,"Distance: 23, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 23, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 21, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 20, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 18, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 17, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 16, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 15, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:33'],Going towards goal : ,"Distance: 15, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 14, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 14, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 14, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 13, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 11, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 11, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:34'],Going towards goal : ,"Distance: 9, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 7, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 7, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 22, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 23, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:35'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:36'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 26, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 30",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 29",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:37'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:38'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:39'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 25, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 24, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:40'],Going towards goal : ,"Distance: 24, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 25, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 25, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 25, Speed: 102, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 23, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 23, Speed: 101, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 21, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:41'],Going towards goal : ,"Distance: 19, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 17, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 16, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 16, Speed: 0, Dir: -28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 16, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 16, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 16, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:42'],Going towards goal : ,"Distance: 16, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 14, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 13, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 12, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 11, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 9, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 8, Speed: 100, Dir: 0",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],Going towards goal : ,"Distance: 7, Speed: 0, Dir: 28",distance_error_factor: 5angle_error_factor: 3
+,,,
+['2023-11-09 13:07:43'],goal reached,0,0

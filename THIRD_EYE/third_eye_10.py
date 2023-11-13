@@ -4,10 +4,24 @@ import math
 import numpy as np
 import time
 import serial
-
+import csv
+import datetime
 
 #Variables
 debug = 0
+
+dt = 0.01
+
+ki_t = 5
+kp_s = 5
+kp_t = 2
+
+proportional = 0
+integral = 0 
+derivative = 0
+
+list_of_points = []
+execution_flag = 0
 
 destination_x =1
 destination_y =1
@@ -19,11 +33,13 @@ third_side_angle = 0
 min_speed = 35
 max_speed = 40
 distance_error_factor = 5
+angle_error_factor = 3
 Twist = [0, 0]
 
 #error
 theta_error = 0
 prev_error = 0
+
 
 control_string = ""
 control_string += str(0)+"," + str(0) +","+ str(0) +"," + str(0) + "\n"
@@ -31,6 +47,30 @@ speed = 50
 ser = serial.Serial(port='COM7',baudrate=115200,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=0)
 
 cap = cv2.VideoCapture(1)
+
+with open('data.csv', 'a') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(["Time ","Status", "Data", "Parametes"])
+
+def write_data(data1, data2, data3):
+    with open('data.csv', 'a') as csvfile:
+        writer = csv.writer(csvfile)
+
+        timestamp = time.time()
+        dt = datetime.datetime.fromtimestamp(timestamp)
+        formatted_timestamp = [dt.strftime("%Y-%m-%d %H:%M:%S")] 
+        
+        data1 = str(data1)
+        data2 = str(data2)
+        data3 = str(data3)
+
+        data1 = f"{data1}"
+        data2 = f"{data2}"
+        data3 = f"{data3}"
+
+        writer.writerow([formatted_timestamp, data1, data2, data3])
+
+
 
 def map_range(value, from_low, from_high, to_low, to_high):
     # Check if value is outside the from range
@@ -52,7 +92,7 @@ def send_serial(speed, dir):
     if destination_x != 1:
         control_string = "<"+str(int(speed)) +","+ str(int(dir))  +","+str(0)  +","+str(0)+">"+"\n"
         # if debug == 1:
-        print(control_string)
+        # print(control_string)
         ser.write(str.encode(control_string))
         time.sleep(0.1)
 
@@ -101,44 +141,62 @@ def control_loop():
     global theta_error
     global min_speed
     global max_speed
+    global list_of_points
+    global kp
+    global dt 
+    global proportional
+    global integral
+    global derivative
 
+    destination_x, destination_y = list_of_points[0]
     distance = calculate_distance(destination_x, destination_y, Red_Robot_x, Red_Robot_y) # x1, y1, x2, y2
+    org_distance = format(distance, ".2f")  
     distance = int(distance/10) # 10 is factor here
    
     if distance > distance_error_factor:      # Distance_Error_control
    
-        Red_Robot_x, Red_Robot_y, turnig,  = detect_robot()
+        Red_Robot_x, Red_Robot_y, turning  = detect_robot()
+        
+        #PID settings
+        # proportional = kp_t*ret_error
+        # integral = integral + (dt*ret_error*ki_t)
+        # derivative = 
 
         # position
         speed = map_range(distance, 10, 100, 40, 45)
 
         #simultaneuos
         # Twist[0] = int(speed) #param
-        # Twist[1] = int(turnig)
+        # Twist[1] = int(turning)
 
         #step-by-step
-        if turnig == 0:
-            Twist[0] = int(2*speed) #param
-            Twist[1] = int(turnig)
+        speed_coffeciant = 2.5
+        turning_coffeciant = 0.8
+
+        if turning == 0:
+            Twist[0] = int(speed_coffeciant*speed) #param
+            Twist[1] = int(turning)
         else:
             Twist[0] = int(0) #param
-            Twist[1] = int(3*turnig)
+            Twist[1] = int(turning_coffeciant*turning)
 
         # # send command now 
         send_serial(Twist[0], Twist[1])
 
-        if debug == 0:    
-            print(str("in control loop : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
+        # if debug == 0:    
+        write_data(str("Going towards goal : "), "Distance: "+str(org_distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]), "Distance_error_factor: "+str(distance_error_factor)+", Angle_error_factor: "+str(angle_error_factor)+", speed_coffeciant: "+str(speed_coffeciant) + ", turning_coffeciant: "+str(turning_coffeciant))
+
+        print(str("Going towards goal : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
+
 
     else:
-        if debug == 0:    
-            print(str("next goal : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
+        # if debug == 0:    
+        #     print(str("next goal : ")+"Distance: "+str(distance)+", Speed: "+str(Twist[0]) + ", Dir: "+str(Twist[1]))
         # target reached!
+        list_of_points.pop(0)
         Twist[0] = 0.0
         Twist[1] = 0.0
-        send_serial(Twist[0], Twist[1])
-        # self.call_catch_turtle_server(self.turtle_to_catch_.name)
-        # self.turtle_to_catch_ = None
+        # send_serial(Twist[0], Twist[1])
 
 
 #3 detect robot
@@ -155,7 +213,7 @@ def detect_robot():
     mapped_value = 0
     global min_speed
     global max_speed
-    angle_error_factor = 1
+    global angle_error_factor
 
     global third_side_angle 
     global destination_x
@@ -182,13 +240,13 @@ def detect_robot():
     # For red color 
     red_mask = cv2.dilate(red_mask, kernel) 
     res_red = cv2.bitwise_and(img, img, mask = red_mask) 
-    cv2.imshow('red_mask', res_red)
+    # cv2.imshow('red_mask', res_red)
     red_contours, hierarchy = cv2.findContours(red_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) 
 
     # For green color
     green_mask = cv2.dilate(green_mask, kernel) 
     res_green = cv2.bitwise_and(img, img, mask = green_mask) 
-    cv2.imshow('green_mask', res_green)
+    # cv2.imshow('green_mask', res_green)
     green_contours, hierarchy = cv2.findContours(green_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)     
     
     #red contours
@@ -236,7 +294,7 @@ def detect_robot():
     # Calculate_angles 
     arrow_angles = Calculate_angle(qr, qs, rs) # recived A, B, C = arrow_angle, third_side_angle, distance_angle
     destination_angles = Calculate_angle(ab, ac, bc) # recived A, B, C = arrow_angle, third_side_angle, distance_angle
-    theta_error = destination_angles[2] - arrow_angles[2]
+    # theta_error = destination_angles[2] - arrow_angles[2]
 
     # Theta modification
 
@@ -275,7 +333,6 @@ def detect_robot():
     elif mod_theta_error < -math.pi:
         mod_theta_error += 2*math.pi
     
-    print("mod_theta_error: "+str(mod_theta_error))
     # for left command
     if mod_theta_error < -1*angle_error_factor:
         mapped_value = map_range(mod_theta_error, -360, -1*angle_error_factor, max_speed, min_speed)
@@ -286,17 +343,17 @@ def detect_robot():
     else:
         mapped_value = 0
 
-    turnig = derivative_constant*mapped_value
+    turning = derivative_constant*mapped_value
 
     if debug == 1:
         print(str("info: ")
             # +str("arrow_angles: ")+str(int(arrow_angles[2]))+str(" destination_angles: ")+str(int(destination_angles[2]))
-            +str(" turnig: ")+str((turnig))
+            +str(" turning: ")+str((turning))
             # +str(" goal_theta: ")+str(int(10*goal_theta))+str(" robot_theta: ")+str(int(10*robot_theta))+str(" diff: ")+str(10*diff)
             +str(" mod_destination_angle: ")+str(int(mod_destination_angle))+str(" mod_arrow_angle: ")+str(int(mod_arrow_angle))+str(" mod_theta_error: ")+str(int(mod_theta_error))
         )
 
-    return detected_rx, detected_ry, turnig
+    return detected_rx, detected_ry, turning
 
 #2 Update frame
 def Update_frame(): # only updates static frame with destination_x, destination_y, Red_Robot_x, Red_Robot_y coordinates and path
@@ -314,29 +371,53 @@ def Update_frame(): # only updates static frame with destination_x, destination_
     thickness = 3
     cv2.line(img, start_point, end_point, color, thickness)
 
-
 #1 click event
 def click_event(event, x, y, flags, params):
     global destination_x
     global destination_y
+    global execution_flag
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        list_of_points.append([x, y])
 
     if event==cv2.EVENT_RBUTTONDOWN:
-        destination_x=x
-        destination_y=y
+        # destination_x=x
+        # destination_y=y
+        execution_flag = 1
 
 
 # ret, frame = cap.read()
 # run_once()
+goal = 0
+
 while True:
     ret, img = cap.read()
-
+    dt = dt + 1
     # img = cv2.flip(img, 0)
     # Red_Robot_x, Red_Robot_y = detect_robot()
-    Update_frame()
+    if goal == 1 and len(list_of_points) == 0:
+        print("goal reached")
+        write_data("goal reached", 0, 0)
+        send_serial(0, 0)
+
+
     cv2.imshow('img', img)
-    # cv2.imshow('frame', frame)
     cv2.setMouseCallback('img', click_event)
-    control_loop()
+    if  len(list_of_points) != 0 and execution_flag == 1:
+        goal = 1
+        Update_frame()
+        cv2.imshow('img', img)
+        # cv2.imshow('frame', frame)
+        cv2.setMouseCallback('img', click_event)
+        control_loop()
+    else:
+        destination_x= Red_Robot_x
+        destination_y= Red_Robot_y
+        execution_flag = 0
+        goal = 0
+    
+    
+        
 
     if cv2.waitKey(10) & 0xFF == ord('q'):
         break

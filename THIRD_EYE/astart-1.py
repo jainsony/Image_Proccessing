@@ -1,10 +1,15 @@
 import pygame
 import math
+import cv2 as cv
 from queue import PriorityQueue
+import time
+import numpy as np
 
 WIDTH = 800
 WIN = pygame.display.set_mode((400, 400))
-pygame.display.set_caption("A* Path Finding Algorithm")
+pygame.display.set_caption("A* Path Finding Algorithm third eye")
+bot_image=pygame.image.load("robot.png").convert()
+
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -16,6 +21,9 @@ PURPLE = (128, 0, 128)
 ORANGE = (255, 165 ,0)
 GREY = (128, 128, 128)
 TURQUOISE = (64, 224, 208)
+
+def do_things():
+	print("in do things")
 
 class Spot:
 	def __init__(self, row, col, width, total_rows):
@@ -168,14 +176,16 @@ def draw_grid(win, rows, width):
 
 
 def draw(win, grid, rows, width):
-	win.fill(WHITE)
+    win.fill(WHITE)
+    win.blit(bot_image, (0,0))
+    pygame.display.update()
+    # print("in draw function")
+    for row in grid:
+        for spot in row:
+            spot.draw(win)
 
-	for row in grid:
-		for spot in row:
-			spot.draw(win)
-
-	draw_grid(win, rows, width)
-	pygame.display.update()
+    draw_grid(win, rows, width)
+    pygame.display.update()
 
 def get_clicked_pos(pos, rows, width):
 	gap = width // rows
@@ -231,6 +241,7 @@ def main(win, width):
 					for row in grid:
 						for spot in row:
 							spot.update_neighbors(grid)
+							# do_things()
 
 					algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
 

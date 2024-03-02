@@ -31,16 +31,15 @@ marker based robot, navigation, A-star
 
         This paper is based on robot can be control wihtout using a bit of machine learning models, and at low computation[reference a* requires huge memory], specifically in indoor robotics but with some limitations.
 
+
     2.2 Environment
 
-        Environment is  the crucial factor for robot different types of robot are made to 
+    Think of the environment like the stage where robots perform, and different robots are like actors designed for specific roles on that stage. Each environment, whether it's indoors or outdoors, has its own unique features that affect how robots work. For instance, when robots are inside, it's important for the floor to be flat so that the robots can do their calculations easily without things getting too complicated.
 
-        different types ke robot bnaye jaate hai alag-alag environment ke liye kyuki hr Environment characterstics alag hoti hai jese indoor robotics ki baat ki jaaye to surface plane hona bhaut jarrori hota hai jisse calculation constraints simple rhe or koi complexity increase na ho. 
+    Now, imagine scientists who work on robots, called roboticists. They use different methods to help robots understand and move around in their surroundings. Some robots use maps made with the help of special sensors called lidars. But interestingly, not all robots make big maps of the whole area. Some just focus on small local maps to get around another words, the robot looks at what it sees and figures out where to go.
 
-        In various appproaches, robotist uses map which are generated with help of lidars, some of them dont generate the whole area map they only use local map [reference]
-        hence in this approach there system works using the visuals what robot sees.
+    In our research, we tried something new. Instead of relying on multiple sensors or making big maps, we only used a simple camera. The robot looked at its surroundings through the camera to find its way without needing lots of complicated technology like lidars or detailed maps.
 
-        In our system we tried something different we only use camera and observe environment for robot and continue our further navigation.
 
     2.3  About maintenence 
 
@@ -71,6 +70,13 @@ marker based robot, navigation, A-star
 
         By treating the robot's current coordinates and the destination coordinates as the endpoints of the hypotenuse and one of the legs of a right triangle, respectively, the Pythagorean theorem allows us to calculate the length of the hypotenuse, which represents the shortest path between the two points. This approach eliminates the need for complex pathfinding algorithms and ensures that the robot takes the most direct route to its destination.
 
+        "By providing collection of coordinates like this we can fix the path for the fixed environment and there will be no need for any reference line as we use in line following robots."
+
+        diagrams
+
+        Going further we have compared this straight lines path following technique with A-star algorithm so that we can comapre them.
+        "write something about A-star"
+
         diagrams
 
         The application of the Pythagorean theorem in this context demonstrates its versatility as a mathematical tool and highlights its relevance in various fields, including robotics and path planning. reference[pythogorus used for path planning]
@@ -85,9 +91,27 @@ marker based robot, navigation, A-star
         Robot is detected by marker identification approach [reference] we are using color masks to get the robot location in another words coordinates of robot.
         For marker we are using masking based marker there are two masks applied one to locate robot and another to calculate orientation with respect to main frame which fixed and static.
 
+        Although there is one issue which arrised due different perspective sometime area of the marker get reduced as it is 3D environment so we created this 3D visuale to 2D visual using perspective transform [referance] which is used "write something"
+
+        diagram
+
         as our system is set and we have sub-destination points we can easily calculate our shortest distance using Pythagorean theorem and its orientation with respect to main frame using Laws of cosines.
 
         diagrams
+
+        Mapping
+        As in the mobile robotics most of the people develop map to get to know the environment better and to do so they several sensors and do lot of computations.
+        
+        well in this approach we used something different, we used QR code based detection technique to do navigation, that where is the robot in the environment by cartitian coordiante system and using basic trignometry.
+
+        How this works.
+        Assume there is a frame you are getting from camera and camera itself has its limit so to fetch robot working environment we used qr-code boundaries and it is like a building block which can further be enhanced.
+
+        if you want to increase your working environment this becomes quite easy we need to fetch the other environment qr-codes using another camera then that can be stiched together which is given below our tested outcome.
+
+        diagram
+
+
 
 
     3.4 PID Controller
@@ -113,7 +137,7 @@ marker based robot, navigation, A-star
     using A* and without A*(predefined paths)
 
     - command generation optimisation
-    time & using pid and without pid 
+    time & using pid and without pid d
 
 
 5. Conclusion

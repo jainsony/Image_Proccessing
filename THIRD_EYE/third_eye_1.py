@@ -21,6 +21,7 @@ Twist = [0, 0] # linear_x, angular_z
 def serial_control(Twist):
 	pass
 
+
 #Control_Robot
 def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
 
@@ -59,7 +60,6 @@ def control_loop(destination_x, destination_y, Red_Robot_x, Red_Robot_y):
 			break
 			# self.call_catch_turtle_server(self.turtle_to_catch_.name)
 			# self.turtle_to_catch_ = None
-
 
 
 #Main_Frame
@@ -153,8 +153,6 @@ def click_event(event, x, y, flags, params):
 			# cv2.imshow('image', img)
 			control_loop(x2, y2, x1, y1)
 			# time.sleep(2)
-
-
 
 # driver function
 if __name__=="__main__":
